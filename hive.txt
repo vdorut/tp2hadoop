@@ -1,0 +1,12 @@
+Database on vdorut , table : prenoms
+
+q1 :select b.origineuh, sum(b.sommeuh) from (select trim(a.expld) as origineuh, count(a.expld) as sommeuh from (SELECT explode(origin) as expld FROM prenoms) as a group by expld) as b group by origineuh;
+
+q2 :select a.taille, sum(a.total) from (select size(origin) as taille, count(size(origin)) as total from prenoms group by origin) as a group by taille;
+
+q3 :SELECT gender, COUNT (DISTINCT prenom), (COUNT(DISTINCT prenom) *100/SUM(COUNT(DISTINCT prenom))OVER()) FROM prenoms GROUP BY gender;
+
+q3 is not optimal
+
+q1 and 2 with leopold grosjean
+
